@@ -62,7 +62,7 @@ $settings->add(new admin_setting_configselect(
             'style',
             get_string('style', 'block_graph_stats'),
             get_string('style_help', 'block_graph_stats'),
-            'area',
+            'classic',
             $style
         ));        
         
