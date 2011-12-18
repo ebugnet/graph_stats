@@ -71,18 +71,33 @@ class block_graph_stats extends block_base {
          * @var int 
          */
         $daysnb = $CFG->daysnb;
+        
         /**
          * Today's date
          * @var timestamp 
          */
         $today = mktime(0, 0, 0, date("m") , date("d") , date("Y"));
+        
+        /**
+         * engine used for make the graph
+         * @var string 
+         */
+        $engine = $CFG->engine;
      
         $this->content         =  new stdClass;
         $this->content->text   = '';
         $this->content->footer = '';
         
         // Print the graph
-        $this->content->text .= '<center><img src="'.$CFG->wwwroot.'/blocks/graph_stats/graph.php?course_id='.$COURSE->id.'" title="'.get_string('graphtitle','block_graph_stats',$daysnb).'" /></center>';        
+        
+        if ($engine == 'google') {
+            // Graph from Google API
+            include 'graph_google.php';    
+            $this->content->text .= graph_google($COURSE->id, get_string('graphtitle','block_graph_stats',$daysnb));
+        } else {
+            // Graph from Moodle
+            $this->content->text .= '<center><img src="'.$CFG->wwwroot.'/blocks/graph_stats/graph.php?course_id='.$COURSE->id.'" title="'.get_string('graphtitle','block_graph_stats',$daysnb).'" /></center>';        
+        }
         
         // Add a link to course report for today
         if (has_capability('coursereport/log:view', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {

@@ -52,7 +52,20 @@ $settings->add(new admin_setting_configtext(
             '150',
             PARAM_INT
         ));
-  
+
+$engine = array(	
+    'moodle'=>'Moodle',
+    'google'=>'Google'
+);
+
+$settings->add(new admin_setting_configselect(
+            'engine',
+            get_string('engine', 'block_graph_stats'),
+            get_string('engine_help', 'block_graph_stats'),
+            'moodle',
+            $engine
+        ));   
+          
 $style = array(	
     'area'=>get_string('area', 'block_graph_stats'),
     'classic'=>get_string('classic', 'block_graph_stats')

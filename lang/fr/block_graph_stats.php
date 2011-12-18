@@ -8,6 +8,10 @@ $string['style_help'] = 'Style du graphique';
 $string['moredetails'] = 'Plus de détails';
 $string['area'] = 'Aires';
 $string['classic'] = 'Classique : barre et ligne';
+$string['engine'] = 'Moteur';
+$string['engine_help'] = 'Moteur de rendu';
+$string['visitors'] = 'Visiteurs';
+$string['uniquevisitors'] = 'Visiteurs uniques';
 
 // French translation
 $string['blockname'] = 'Statistiques';

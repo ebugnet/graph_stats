@@ -176,4 +176,4 @@ $graph->parameter['axis_colour'] 		= $color_axis_colour;
 $graph->parameter['shadow']         	= 'none'; 
 error_reporting(5); // ignore most warnings such as font problems etc
 $graph->draw_stack();
-?>
+
