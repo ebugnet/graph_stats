@@ -1,6 +1,5 @@
-<?PHP 
-// Moodle 2.0
-// Portuguese
+<?php
+// Translation by ?
 $string['pluginname'] = 'Estatísticas';
 
 // Portuguese langage

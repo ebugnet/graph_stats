@@ -1,5 +1,5 @@
-<?PHP // $Id$ 
-      // local modifications from http://localhost/moodle
+<?php
+// Translation by Adam Pawelczak
 $string['pluginname'] = 'Statystyki';
 
 $string['aqua'] = 'Jasnozielono-niebieski';

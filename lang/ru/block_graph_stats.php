@@ -1,5 +1,5 @@
-<?PHP 
-
+<?php
+// Translation by Alexey Veretennikov
 $string['pluginname'] = 'Статистика';
 
 // Russian langage

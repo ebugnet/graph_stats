@@ -1,7 +1,7 @@
-<?PHP 
+<?php 
+// Translation by Harvert Vanegas
 $string['pluginname'] = 'Estadísticas';
 
-// Idioma español traducido por Harvert Vanegas
 $string['blockname'] = 'Estadísticas';
 $string['connectedtoday'] = 'Conexiones de hoy&nbsp;: ';
 $string['coursesnb'] = 'Cursos totales&nbsp;: ';

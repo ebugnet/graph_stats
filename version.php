@@ -24,9 +24,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2011121500;
-$plugin->release = '2.0 (Build: 2011121500)';
+$plugin->version = 2011122100;
+$plugin->release = '2.0 (Build: 2011122100)';
 $plugin->cron = 0;
 $plugin->requires = 2010112400;
 $plugin->component = 'block_graph_stats';
-$plugin->maturity =  MATURITY_RC;
+$plugin->maturity =  MATURITY_STABLE;

@@ -1,5 +1,5 @@
 <?php
-// Moodle 2.0
+// Translation by Éric Bugnet
 $string['pluginname'] = 'Statistiques';
 
 // Added for V2

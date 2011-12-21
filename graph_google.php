@@ -24,11 +24,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-
 defined('MOODLE_INTERNAL') || die;
-
-
 
 function graph_google($course_id,$title) {
     global $CFG,$DB;

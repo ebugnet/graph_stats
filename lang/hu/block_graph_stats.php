@@ -1,7 +1,5 @@
-<?PHP // $Id$ 
-
-      // local modifications from http://moodleportal.hu/mgszh
-// Moodle 2.0
+<?php
+// Translation by http://moodleportal.hu/mgszh
 $string['pluginname'] = 'Statisztika';
 
 $string['aqua'] = 'vízkék';
