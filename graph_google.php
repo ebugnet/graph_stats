@@ -155,6 +155,7 @@ function graph_google($course_id,$title) {
         google.setOnLoadCallback(drawChart);
         function drawChart() {
         var data = new google.visualization.DataTable();
+        data.addColumn("string", "Day");
         data.addColumn("number", "'.get_string('visitors','block_graph_stats').'"); ';
         if ($course_id<=1) { $graph .= 'data.addColumn("number", "'.get_string('uniquevisitors','block_graph_stats').'");'; }
         
@@ -163,9 +164,9 @@ function graph_google($course_id,$title) {
             $a = 0;
             for ($i=$daysnb;$i>-1;$i--) {
                 if ($course_id>1) {
-                    $graph .= '['.$logs_multi[$a].'],';
+                    $graph .= '["'.$i.'",'.$logs_multi[$a].'],';
                 } else {
-                    $graph .= '['.$logs_multi[$a].','.$logs[$a].'],';
+                    $graph .= '["'.$i.'",'.$logs_multi[$a].','.$logs[$a].'],';
                 }    
                 $a++;            
             }
