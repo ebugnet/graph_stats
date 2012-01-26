@@ -106,6 +106,7 @@ function graph_google($course_id,$title) {
     }
 
     $days = array();
+    $day = array();
     $logs = array();
     $logs_multi = array();
 
@@ -121,6 +122,7 @@ function graph_google($course_id,$title) {
 		    $countgraph_multi = $DB->get_record_sql($sql, $params);
             $days[$a] = '';
 		    $logs_multi[$a] = $countgraph_multi->countid;
+		    $day[$a] = substr(userdate(mktime(0, 0, 0, date("m") , date("d") - $i, date("Y"))),0,-7);
 		    $a = $a+1;
 	    }
     } else {
@@ -142,6 +144,7 @@ function graph_google($course_id,$title) {
 			    $countgraph_multi = $DB->get_record_sql($sql, $params);
 			    $logs_multi[$a] = $countgraph_multi->countid;
 		    }
+		    $day[$a] = substr(userdate(mktime(0, 0, 0, date("m") , date("d") - $i, date("Y"))),0,-7);
 		    $a = $a+1;
 	    }
     }
@@ -164,9 +167,9 @@ function graph_google($course_id,$title) {
             $a = 0;
             for ($i=$daysnb;$i>-1;$i--) {
                 if ($course_id>1) {
-                    $graph .= '["'.$i.'",'.$logs_multi[$a].'],';
+                    $graph .= '["'.$day[$a].'",'.$logs_multi[$a].'],';
                 } else {
-                    $graph .= '["'.$i.'",'.$logs_multi[$a].','.$logs[$a].'],';
+                    $graph .= '["'.$day[$a].'",'.$logs_multi[$a].','.$logs[$a].'],';
                 }    
                 $a++;            
             }
