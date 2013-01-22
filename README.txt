@@ -1,0 +1,16 @@
+﻿This block allow you to view a little graph stat in your Moodle 2.x
+
+First adaptation to Moodle 2 by Jean Fruitet (thanks to him !)
+
+
+1/ Install this block
+
+2/ Configure this block
+
+3/ Try it...
+
+
+Éric Bugnet
+
+Translation are welcome !
+

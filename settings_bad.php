@@ -25,67 +25,69 @@
  */
  
  
+
 defined('MOODLE_INTERNAL') || die;
 
-// Size and print settings
 if ($ADMIN->fulltree) {
-$settings->add(new admin_setting_configtext(
-            'block_graph_stats_daysnb',
+$configs = array();
+// Size and print settings
+$configs[] = new admin_setting_configtext(
+            'daysnb',
             get_string('daysnb', 'block_graph_stats'),
             get_string('daysnb_help', 'block_graph_stats'),
             '30',
             PARAM_INT
-        ));
+        );
         
-$settings->add(new admin_setting_configtext(
-            'block_graph_stats_graphwidth',
+$configs[] = new admin_setting_configtext(
+            'graphwidth',
             get_string('graphwidth', 'block_graph_stats'),
             get_string('graphwidth_help', 'block_graph_stats'),
             '170',
             PARAM_INT
-        ));
+        );
  
-$settings->add(new admin_setting_configtext(
-            'block_graph_stats_graphheight',
+$configs[] = new admin_setting_configtext(
+            'graphheight',
             get_string('graphheight', 'block_graph_stats'),
             get_string('graphheight_help', 'block_graph_stats'),
             '150',
             PARAM_INT
-        ));
+        );
 
 $engine = array(	
     'moodle'=>'Moodle',
     'google'=>'Google'
 );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_engine',
+$configs[] = new admin_setting_configselect(
+            'engine',
             get_string('engine', 'block_graph_stats'),
             get_string('engine_help', 'block_graph_stats'),
             'moodle',
             $engine
-        ));   
+        );
           
 $style = array(	
     'area'=>get_string('area', 'block_graph_stats'),
     'classic'=>get_string('classic', 'block_graph_stats')
 );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_style',
+$configs[] = new admin_setting_configselect(
+            'style',
             get_string('style', 'block_graph_stats'),
             get_string('style_help', 'block_graph_stats'),
             'classic',
             $style
-        ));        
+        );
         
                       
-$settings->add(new admin_setting_configcheckbox(
-            'block_graph_stats_multi',
+$configs[] = new admin_setting_configcheckbox(
+            'multi',
             get_string('multi', 'block_graph_stats'),
             get_string('multi_help', 'block_graph_stats'),
             '1'
-        ));
+        );
 
         
 // Color settings 
@@ -109,51 +111,56 @@ $colors = array(
     );
 
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_outer_background',
+$configs[] = new admin_setting_configselect(
+            'outer_background',
             get_string('outer_background', 'block_graph_stats'),
             get_string('outer_background_help', 'block_graph_stats'),
             'white',
             $colors
-        ));
+        );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_inner_background',
+$configs[] = new admin_setting_configselect(
+            'inner_background',
             get_string('inner_background', 'block_graph_stats'),
             get_string('inner_background_help', 'block_graph_stats'),
             'white',
             $colors
-        ));
+        );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_inner_border',
+$configs[] = new admin_setting_configselect(
+            'inner_border',
             get_string('inner_border', 'block_graph_stats'),
             get_string('inner_border_help', 'block_graph_stats'),
             'gray',
             $colors
-        ));
+        );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_axis_colour',
+$configs[] = new admin_setting_configselect(
+            'axis_colour',
             get_string('axis_colour', 'block_graph_stats'),
             get_string('axis_colour_help', 'block_graph_stats'),
             'gray',
             $colors
-        ));
+        );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_color1',
+$configs[] = new admin_setting_configselect(
+            'color1',
             get_string('color1', 'block_graph_stats'),
             get_string('color1_help', 'block_graph_stats'),
             'blue',
             $colors
-        ));
+        );
 
-$settings->add(new admin_setting_configselect(
-            'block_graph_stats_color2',
+$configs[] = new admin_setting_configselect(
+            'color2',
             get_string('color2', 'block_graph_stats'),
             get_string('color2_help', 'block_graph_stats'),
             'green',
             $colors
-        ));
+        );
+        
+    foreach ($configs as $config) {
+        $config->plugin = 'blocks/block_graph_stats';
+        $settings->add($config);
+    }
 }
