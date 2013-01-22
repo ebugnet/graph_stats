@@ -41,6 +41,11 @@ class block_graph_stats extends block_base {
 		$this->title = get_string('blockname', 'block_graph_stats');
 	}
 	
+    public function has_config() {
+    // Moodle 2.4
+        return true;
+    }
+
     public function instance_allow_config() {
         return true;
     }
@@ -57,7 +62,7 @@ class block_graph_stats extends block_base {
 
     public function get_content() {
         global $CFG,$COURSE,$USER,$DB;
-        
+
 		if ($this->content !== null) {
             return $this->content;
         }
@@ -69,15 +74,18 @@ class block_graph_stats extends block_base {
          * @var int 
          */
         $daysnb = 30;
-        $daysnb = $CFG->daysnb;
-          
+        if (isset($CFG->block_graph_stats_daysnb)){
+            $daysnb = $CFG->block_graph_stats_daysnb;
+        }
+        
         /**
          * engine used for make the graph
          * @var string 
          */
         $engine = 'moodle';
-        $engine = $CFG->engine;
-     
+        if (isset($CFG->block_graph_stats_engine)){
+            $engine = $CFG->block_graph_stats_engine;
+        }
         $this->content         =  new stdClass;
         $this->content->text   = '';
         $this->content->footer = '';
@@ -94,13 +102,22 @@ class block_graph_stats extends block_base {
         }
         
         // Add a link to course report for today
+        /*
+        // Moodle 2.0
         if (has_capability('coursereport/log:view', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
             $this->content->text .= '<a href="'.$CFG->wwwroot.'/blocks/graph_stats/details.php?course_id='.$COURSE->id.'" alt="'.get_string('moredetails','block_graph_stats').'" target="_blank">';
             $this->content->text .= get_string('moredetails','block_graph_stats').'</a>';
         }
-		
+		*/
+        // Moodle 2.3
+        if (has_capability('report/log:view', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
+            $this->content->text .= '<a href="'.$CFG->wwwroot.'/blocks/graph_stats/details.php?course_id='.$COURSE->id.'" alt="'.get_string('moredetails','block_graph_stats').'" target="_blank">';
+            $this->content->text .= get_string('moredetails','block_graph_stats').'</a>';
+        }
+
 		// Add some details in the footer
-		if ($COURSE->id>1) { 
+		if ($COURSE->id>1) {
+		//if ($COURSE->id>-1) {
 			// In a course
             $params = array('time' => mktime(0, 0, 0, date("m") , date("d"), date("Y")), 'course' => $COURSE->id);
             $sql = "SELECT COUNT(DISTINCT(userid)) as countid FROM {log} WHERE time > :time AND action = 'view' AND course = :course  ";
@@ -117,7 +134,6 @@ class block_graph_stats extends block_base {
 			$this->content->footer .= '<br />'.get_string('membersnb','block_graph_stats').count($users);
 			$this->content->footer .= '<br />'.get_string('coursesnb','block_graph_stats').count($courses);
 		}
-        
-        return $this->content;
+       return $this->content;
     }
 }

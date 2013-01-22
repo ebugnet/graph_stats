@@ -50,9 +50,19 @@ $PAGE->set_heading($COURSE->fullname);
 
 echo $OUTPUT->header();
 
+/*
+// Moodle 2.0
 if (has_capability('coursereport/log:view', $context)) {
     echo '<h2 class="main">'.get_string('connectedtoday','block_graph_stats').'</h2>';
     echo '<a href="'.$CFG->wwwroot.'/course/report/log/index.php?chooselog=1&showusers=1&showcourses=1&host_course=1%2F'.$course_id.'&user=&date='.$today.'&modid=&modaction=&logformat=showashtml" alt="'.get_string('moredetails','block_graph_stats').'">'.get_string('moredetails', 'block_graph_stats').'</a>';
+    if (!empty($SESSION->fullnamedisplay)) {
+        $CFG->fullnamedisplay = $SESSION->fullnamedisplay;
+    }
+*/
+// Moodle 2.3
+if (has_capability('report/log:view', $context)) {
+    echo '<h2 class="main">'.get_string('connectedtoday','block_graph_stats').'</h2>';
+    echo '<a href="'.$CFG->wwwroot.'/report/log/index.php?chooselog=1&showusers=1&showcourses=1&host_course=1%2F'.$course_id.'&user=&date='.$today.'&modid=&modaction=&logformat=showashtml" alt="'.get_string('moredetails','block_graph_stats').'">'.get_string('moredetails', 'block_graph_stats').'</a>';
     if (!empty($SESSION->fullnamedisplay)) {
         $CFG->fullnamedisplay = $SESSION->fullnamedisplay;
     }

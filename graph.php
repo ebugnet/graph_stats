@@ -37,72 +37,73 @@ global $CFG,$DB;
  * @var integer 
  */
 $course_id = optional_param('course_id', 1, PARAM_INT);
+// $course_id = optional_param('course_id', -1, PARAM_INT);
 
 /**
  * number of day for the graph
  * @var integer 
  */
-$daysnb = $CFG->daysnb;
+$daysnb = $CFG->block_graph_stats_daysnb;
 
 /**
  * width of the the graph
  * @var integer 
  */
-$graphwidth = $CFG->graphwidth;
+$graphwidth = $CFG->block_graph_stats_graphwidth;
 
 /**
  * height of the the graph
  * @var integer 
  */
-$graphheight = $CFG->graphheight;
+$graphheight = $CFG->block_graph_stats_graphheight;
 
 /**
  * does I have to print multiconnexion in the front page ?
  * @var boolean
  */
-$multi = $CFG->multi;
+$multi = $CFG->block_graph_stats_multi;
 
 /**
  * color of outer background
  * @var string 
  */
-$color_outer_background = $CFG->outer_background;
+$color_outer_background = $CFG->block_graph_stats_outer_background;
 
 /**
  * color of inner background
  * @var string 
  */
-$color_inner_background = $CFG->inner_background;
+$color_inner_background = $CFG->block_graph_stats_inner_background;
 
 /**
  * color of inner border
  * @var string 
  */
-$color_inner_border = $CFG->inner_border;
+$color_inner_border = $CFG->block_graph_stats_inner_border;
 
 /**
  * color of axis
  * @var string 
  */
-$color_axis_colour = $CFG->axis_colour;
+$color_axis_colour = $CFG->block_graph_stats_axis_colour;
 
 /**
  * color of first graph
  * @var string 
  */
-$color1 = $CFG->color1;
+$color1 = $CFG->block_graph_stats_color1;
 
 /**
  * color of second graph
  * @var string 
  */
-$color2 = $CFG->color2;
+$color2 = $CFG->block_graph_stats_color2;
 
 /**
  * style of the graph
  * @var string 
  */
-$style = $CFG->style;
+$style = $CFG->block_graph_stats_style;
 
 $days = array();
 $logs = array();
@@ -110,7 +111,8 @@ $logs_multi = array();
 
 // Let's get the datas
 $a=0;
-if ($course_id>1) { 
+
+if ($course_id>1) {
 	for ($i=$daysnb;$i>-1;$i--) { // Days count
         $params=array(
             'time1' => mktime(0, 0, 0, date("m") , date("d") - $i, date("Y")),

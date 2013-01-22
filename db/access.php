@@ -13,20 +13,29 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
- 
- 
+
 /**
- * Version file
+ * Graph Stats block caps.
  *
- * @package    block
- * @subpackage graph_stats
- * @copyright  2011 Éric Bugnet with help of Jean Fruitet
+ * @package    graph_stats
+ * @copyright  2013 Éric Bugnet with some help of Jean Fruitet
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2013012210;
-$plugin->release = '2.5 (Build: 2013012200)';
-$plugin->cron = 0;
-$plugin->requires = 2012120300;  // Moodle 2.4
-$plugin->component = 'block_graph_stats';
-$plugin->maturity =  MATURITY_STABLE;
+defined('MOODLE_INTERNAL') || die();
+
+$capabilities = array(
+
+    'block/graph_stats:addinstance' => array(
+        'riskbitmask' => RISK_SPAM | RISK_XSS,
+
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ),
+
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
+);
